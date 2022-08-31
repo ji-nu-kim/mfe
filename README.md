@@ -7,3 +7,7 @@
 ## github action run aws s3 sync dist s3://***/container/latest 에러
 
 - region을 입력했는지 체크
+
+## workflow에 action이 생성되지 않는 문제
+
+- index.html파일을 수정한다
