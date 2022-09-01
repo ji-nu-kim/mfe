@@ -1,24 +1,25 @@
 import React, { useRef, useEffect } from 'react';
-import { marketingMount } from 'marketing/Marketing';
+import { authMount } from 'auth/Auth';
 import { useHistory } from 'react-router-dom';
 
-function Marketing() {
+const Auth = ({ onSignin }) => {
   const ref = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
     const { pathname } = history.location;
-    const { onParentNavigate } = marketingMount(ref.current, {
+    const { onParentNavigate } = authMount(ref.current, {
       onNavigate: ({ pathname: nextPathname }) => {
         if (pathname !== nextPathname) history.push(nextPathname);
       },
       initialPath: pathname,
+      onSignin,
     });
 
     history.listen(onParentNavigate);
   }, []);
 
-  return <div ref={ref}></div>;
-}
+  return <div ref={ref} />;
+};
 
-export default Marketing;
+export default Auth;
